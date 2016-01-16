@@ -1,4 +1,4 @@
- //
+ 
                         char splitDelimiter = '.';
                         string[] words = domain.Split(splitDelimiter);
                         string suffix = words[words.Length - 1];
