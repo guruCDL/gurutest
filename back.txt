@@ -1,0 +1,47 @@
+ //
+                        char splitDelimiter = '.';
+                        string[] words = domain.Split(splitDelimiter);
+                        string suffix = words[words.Length - 1];
+
+                        for (int i = words.Length - 2; i > -1; i--)
+                        {
+                            // Always add the suffix
+                            int startPos = domain.LastIndexOf(".");
+
+                            for (int ii = i; ii < words.Length - 1; ii++)
+                            {
+                                // Determine starting index of the domain string
+                                // Note when this fails it returns '-1', then below
+                                // '+1' is added to the start index and returns the correct
+                                // string
+                                startPos = domain.LastIndexOf(".", startPos - 1);
+                            }
+
+                            // Prepare domain string output
+                            string tempDomain = domain.Substring(startPos + 1);
+
+                            char firstLetter = tempDomain[0];
+                            string firstLetters = tempDomain.Substring(0, 2);
+
+                            // First check the user domain table and then navigate to master domain if not found
+                            //changing this based on new filtering algorithm discussed on 4/10/2014
+
+
+
+
+                            SQLiteCommand command = new SQLiteCommand(sqlConnectionLocal);
+
+                            SQLiteTransaction transaction = sqlConnectionLocal.BeginTransaction();
+                            command.Transaction = transaction;
+                            // conditional insert
+
+                            command.CommandText = "INSERT OR IGNORE INTO user_domain_table(domain,suffix,first_letter,black_listed,source)" +
+                                                  "VALUES ('" + tempDomain + "', '" + suffix + "','" + firstLetters + "'," + blacklisted + ",0)";
+
+
+                            command.ExecuteNonQuery();
+                            // Execute and end the transaction
+
+
+                            transaction.Commit();
+                        }
