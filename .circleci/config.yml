@@ -27,7 +27,7 @@ workflows:
   say-hello-workflow:
     triggers:
       - schedule:
-          cron: "* * * * *"
+          cron: "5 8 * * 0"
           filters:
             branches:
               only:
