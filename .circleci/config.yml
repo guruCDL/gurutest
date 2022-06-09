@@ -26,7 +26,12 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-sched-cd-wf:
+nightly:
     triggers:
       - schedule:
           cron: "* * * * *" 
+          filters:
+          branches:
+              only:
+                - main
+                - beta
