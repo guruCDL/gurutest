@@ -1,7 +1,7 @@
 __author__ = 'Guru'
 
 import unittest
-from gurutest import Hello
+from Hello import HelloWorld
 
 class MyTestCase(unittest.TestCase):
     def test_default_greeting_set(self):
