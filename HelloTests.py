@@ -5,7 +5,7 @@ from Hello import HelloWorld
 
 class MyTestCase(unittest.TestCase):
     def test_default_greeting_set(self):
-        greeter = Hello()
+        greeter = HelloWorld()
         self.assertEqual(greeter.message, 'Hello word!')
 
 if __name__ == '__main__':
