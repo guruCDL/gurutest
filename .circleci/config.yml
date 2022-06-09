@@ -8,6 +8,7 @@ Every Minute:
           filters:
           branches:
               only:
+                circleci-project-setup
                 
 
 # Define a job to be invoked later in a workflow.
